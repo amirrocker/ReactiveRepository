@@ -1,0 +1,80 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.21'
+    id 'java'
+
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+}
+
+group = 'de.amirrocker'
+version = '1.0-SNAPSHOT'
+
+configurations {
+    umlDoclet
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    umlDoclet "nl.talsmasoftware:umldoclet:2.0.12"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+
+//    this is a on-top library - adding convenience to rxJava
+    implementation "io.reactivex.rxjava3:rxkotlin:3.0.1"
+
+    implementation "io.reactivex.rxjava3:rxjava:3.0.9"
+
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+
+
+    // dokka for javadoc ?
+    // look here :
+    // https://kotlinlang.org/docs/reference/kotlin-doc.html
+    // and here:
+    // https://github.com/Kotlin/dokka
+    // get the cli for dokka
+    // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-cli
+    compile group: 'org.jetbrains.dokka', name: 'dokka-cli', version: '1.4.10.2'
+
+    /* dependency of http4k */
+    implementation platform("org.http4k:http4k-bom:3.278.0")
+    implementation "org.http4k:http4k-core"
+    implementation "org.http4k:http4k-server-netty"
+    implementation "org.http4k:http4k-client-apache"
+
+    /* a kotlin Google gson implementation with a more concise language */
+    implementation 'com.github.salomonbrys.kotson:kotson:2.5.0'
+
+    /*
+    * spring jdbc -> This is only sensible when compiling for a springboot app or a TorandoFX
+    * implementation since too heavy weight for mobile phones, given also that lightweight
+    * optimized solutions like Room exist and should be used.
+    *  */
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+}
+
+test {
+    useJUnit()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+javadoc {
+    source = sourceSets.main.allJava
+    options.docletpath = configurations.umlDoclet.files.asType(List)
+    options.doclet = "nl.talsmasoftware.umldoclet.UMLDoclet"
+    options.addStringOption "additionalParamName", "additionalParamName"
+}
