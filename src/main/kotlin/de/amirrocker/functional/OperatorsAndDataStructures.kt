@@ -100,6 +100,48 @@ fun runOperators() {
     }
 
 
+    /**
+     * same as in imperative programming regular list access. Operator
+     * allows to access an observable just like a collection type.
+     * Using Monad type the elem10 code still runs.
+     * TODO Cover Monad
+     */
+    fun elementAtOperator() {
+        val flowable = listOf(1, 2, 3, 4, 5).toObservable()
+        val elem3 = flowable.elementAt(3)
+        elem3.subscribe {
+            println("received element3: $it")
+        }
+        val elem10 = flowable.elementAt(10)
+        elem10.subscribe {
+            println("received element50: $it")
+        }
+    }
+
+    /**
+     * TODO show filter, ignoreElements, first and last
+     */
+    fun filterAndFirstAndLastOperators() {
+        println("filterAndFirstAndLastOperators to be impl.")
+    }
+
+
+    /**
+     * transforming operators:
+     * - map - we used map a number of times by now. Simply maps T->R
+     * - flatMap - maps T->Observable<R> - spawns a new observable source of emission.
+     * - switchMap
+     * - switchIfEmpty
+     * - scan
+     * - ... and many more
+     *
+     *
+     */
+    fun transformingOperators() {
+
+        val flowable = Flowable.interval(100, TimeUnit.MILLISECONDS)
+
+    }
 
 }
 
@@ -122,6 +164,9 @@ fun simulateKeystrokes() : Observable<String> =
             }
         }
     }
+
+
+
 
 
 
