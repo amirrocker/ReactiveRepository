@@ -8,9 +8,11 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
+import java.sql.Time
 import java.util.concurrent.TimeUnit
 
 
@@ -22,18 +24,6 @@ import java.util.concurrent.TimeUnit
  * as message to upstream.
  * TODO describe backpressure in short and link to sources.
  */
-
-
-/**
- * a very simple Domain class to play with...
- */
-data class DomainEntity(
-    val id: Int
-) {
-    init {
-        println("created: $this with id: $id")
-    }
-}
 
 
 class IntroBackpressure {
@@ -299,10 +289,27 @@ class IntroBackpressure {
                     print("it, ")
                 }
                 println()
-
             }
     }
 
+    /**
+     * throttle - omits emissions
+     * - throttleFirst
+     * - throttleLast
+     * - trottleWithTimeout
+     */
+    fun throttleOperator() {
+        val flowable = Flowable.interval(100, TimeUnit.MILLISECONDS)
+        flowable.throttleFirst(200, TimeUnit.MILLISECONDS)
+            .subscribe {
+                println("subscribe throttleFirst: $it")
+            }
+        runBlocking { delay(1000) }
+    }
+
+    /**
+     * TODO formulate a conclusion on backpressure - async
+     */
 
 }
 

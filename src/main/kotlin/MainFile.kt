@@ -1,4 +1,5 @@
 import de.amirrocker.functional.IntroBackpressure
+import de.amirrocker.functional.runOperators
 
 fun main() {
     println("Main file")
@@ -11,8 +12,9 @@ fun main() {
 
 //    IntroBackpressure().simpleBackpressureShowcase()
 //    IntroBackpressure().moreComplexBackpressure()
-    IntroBackpressure().handleBackpressureMissingOptions()
+//    IntroBackpressure().handleBackpressureMissingOptions()
 
+    runOperators()
 
 
     //createEmail()
