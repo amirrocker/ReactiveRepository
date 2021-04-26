@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.CompletableSource
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.functions.BiFunction
+import io.reactivex.rxjava3.kotlin.toObservable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 /**
@@ -66,8 +67,28 @@ fun combineData() {
         .subscribe {
             println("received zipped value: $it")
         }
+    }
+
+    /**
+     *
+     */
+    fun funWithTheZipWithOperator() {
+
+        val flowable1 = Observable.range(1, 12)
+        val flowable2 = listOf(1..10).toObservable().map {
+            DomainEntity(it.first, "Received IntRange ${it.forEach { 
+                println("Internally iterating over the IntRange $it")
+            }}")
+        }
+        val flowable3 = listOf("s1", "s2", "s3").toObservable()
+        flowable1.zipWith(flowable2, { emission1:Int, emission2:DomainEntity -> "$emission1 $emission2" })
+
+        /**
+         * TODO write the above code with Flowable - simply using above code fails - explain why
+         */
 
     }
+
 
 
 

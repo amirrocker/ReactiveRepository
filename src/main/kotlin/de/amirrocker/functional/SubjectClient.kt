@@ -1,13 +1,11 @@
 package de.amirrocker.functional
 
-class Main {
+class SubjectClient {
 
     fun main(vararg args:String) {
         println("Main.main() called with args")
-//        Flowables().playWith()
-
+        Flowables().playWith()
         playWithSubjects()
-
     }
 
 }
@@ -36,5 +34,4 @@ object StoneOven : Oven {
 
 
 fun annotationsTesting() {
-
 }

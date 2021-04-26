@@ -1,24 +1,17 @@
-import de.amirrocker.functional.IntroBackpressure
-import de.amirrocker.functional.runOperators
+import de.amirrocker.functional.logAggregate
 
 fun main() {
-    println("Main file")
+    println("Main file called.")
 
-
-//    val main = Main().main("sldfkjslfj", "lskdjflsdkfj", "ldskfjgdfslgkj")
-//    println("main class created and Main.main called")
-
-    // playWithProcessors()
-
+//    val main = Main().main("value1", "value2", "value3")
+//    playWithProcessors()
 //    IntroBackpressure().simpleBackpressureShowcase()
 //    IntroBackpressure().moreComplexBackpressure()
 //    IntroBackpressure().handleBackpressureMissingOptions()
+//    runOperators()
+//    createEmail()
 
-    runOperators()
-
-
-    //createEmail()
-
+    logAggregate()
 }
 
 

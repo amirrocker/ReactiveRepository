@@ -8,8 +8,8 @@ package de.amirrocker.functional
  */
 typealias WeaponDamage = Int
 typealias DistanceTraveled = Int
-typealias Longitude = Long
-typealias Latitude = Long
+//typealias Longitude = Long
+//typealias Latitude = Long
 
 
 /**
