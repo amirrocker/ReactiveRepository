@@ -1,4 +1,4 @@
-import de.amirrocker.functional.logAggregate
+import de.amirrocker.functional.createSoldierGame
 
 fun main() {
     println("Main file called.")
@@ -11,7 +11,10 @@ fun main() {
 //    runOperators()
 //    createEmail()
 
-    logAggregate()
+//    logAggregate()
+
+    createSoldierGame("Hello Game")
+
 }
 
 
